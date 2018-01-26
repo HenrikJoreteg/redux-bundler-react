@@ -1,0 +1,35 @@
+{
+  "name": "redux-bundler-react",
+  "description": "Bindings for redux-bundler to React",
+  "version": "0.0.0",
+  "author": "Henrik Joreteg <henrik@joreteg.com> (joreteg.com)",
+  "devDependencies": {
+    "microbundle": "0.4.0",
+    "react": "16.2.0",
+    "react-dom": "16.2.0",
+    "redux-bundler": "16.0.0",
+    "tap-spec": "4.1.1",
+    "tape": "4.8.0"
+  },
+  "keywords": [
+    "react",
+    "redux"
+  ],
+  "license": "MIT",
+  "main": "index.js",
+  "module": "index.m.js",
+  "peerDependencies": {
+    "react": "*",
+    "redux-bundler": "*"
+  },
+  "prettier": {
+    "semi": false,
+    "singleQuote": true
+  },
+  "scripts": {
+    "build": "microbundle",
+    "dev": "microbundle watch",
+    "test": "tape test/*.js | tap-spec"
+  },
+  "source": "src/index.js"
+}
