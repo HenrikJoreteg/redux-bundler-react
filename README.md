@@ -57,6 +57,11 @@ export default connect(
 
 Thanks to @developit and @marvinroger for getting this going.
 
+## changelog
+
+- `1.0.1` - support `store.action` method if available for easier support for running in a worker. Thanks [@huygn](https://github.com/huygn)
+- `1.0.0` - initial publish
+
 ## license
 
 [MIT](http://mit.joreteg.com/)

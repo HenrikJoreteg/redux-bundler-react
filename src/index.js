@@ -43,7 +43,7 @@ export const connect = (...args) => {
         this.setState.bind(this)
       )
       this.actionCreators = {}
-      actionCreators.forEach((name) => {
+      actionCreators.forEach(name => {
         this.actionCreators[name] = (...args) => {
           if (store.action) {
             return store.action(name, args)
