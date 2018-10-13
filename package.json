@@ -1,7 +1,7 @@
 {
   "name": "redux-bundler-react",
   "description": "Bindings for redux-bundler to React",
-  "version": "1.0.1",
+  "version": "1.1.0",
   "author": "Henrik Joreteg <henrik@joreteg.com> (joreteg.com)",
   "devDependencies": {
     "microbundle": "0.6.0",
