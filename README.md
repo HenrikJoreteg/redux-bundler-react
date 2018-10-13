@@ -59,6 +59,7 @@ Thanks to @developit and @marvinroger for getting this going.
 
 ## changelog
 
+- `1.1.0` - Pass through display name of wrapped component. Thanks [@aulneau](https://github.com/aulneau)!
 - `1.0.1` - support `store.action` method if available for easier support for running in a worker. Thanks [@huygn](https://github.com/huygn)
 - `1.0.0` - initial publish
 
