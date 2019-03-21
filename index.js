@@ -1,2 +1,95 @@
-var t=require("react"),e={store:function(){}},o=function(e){function o(){e.apply(this,arguments)}return e&&(o.__proto__=e),(o.prototype=Object.create(e&&e.prototype)).constructor=o,o.prototype.getChildContext=function(){return{store:this.props.store}},o.prototype.render=function(){return t.Children.only(this.props.children)},o}(t.Component);o.childContextTypes=e;exports.Provider=o,exports.connect=function(){for(var o=[],r=arguments.length;r--;)o[r]=arguments[r];var n=o.slice(-1)[0],s=[],i=[];(o.length>1?o.slice(0,-1):[]).forEach(function(t){if("select"!==t.slice(0,6)){if("do"!==t.slice(0,2))throw Error("CanNotConnect "+t);s.push(t)}else i.push(t)});var c=function(e){function o(t,o){var r=this;e.call(this,t,o);var n=o.store;this.state=n.select(i),this.unsubscribe=n.subscribeToSelectors(i,this.setState.bind(this)),this.actionCreators={},s.forEach(function(t){r.actionCreators[t]=function(){for(var e=[],o=arguments.length;o--;)e[o]=arguments[o];return n.action?n.action(t,e):n[t].apply(n,e)}})}return e&&(o.__proto__=e),(o.prototype=Object.create(e&&e.prototype)).constructor=o,o.prototype.componentWillUnmount=function(){this.unsubscribe()},o.prototype.render=function(){return t.createElement(n,Object.assign({},this.props,this.state,this.actionCreators))},o}(t.Component);return c.contextTypes=e,c.displayName=t.Component.displayName||t.Component.name,c};
+var react = require('react');
+
+var CONTEXT_TYPES = {
+  store: function () {}
+};
+var Provider = /*@__PURE__*/(function (Component) {
+  function Provider () {
+    Component.apply(this, arguments);
+  }
+
+  if ( Component ) Provider.__proto__ = Component;
+  Provider.prototype = Object.create( Component && Component.prototype );
+  Provider.prototype.constructor = Provider;
+
+  Provider.prototype.getChildContext = function getChildContext () {
+    return {
+      store: this.props.store
+    };
+  };
+
+  Provider.prototype.render = function render () {
+    return react.Children.only(this.props.children);
+  };
+
+  return Provider;
+}(react.Component));
+Provider.childContextTypes = CONTEXT_TYPES;
+var connect = function () {
+  var args = [], len = arguments.length;
+  while ( len-- ) args[ len ] = arguments[ len ];
+
+  var Comp = args.slice(-1)[0];
+  var strings = args.length > 1 ? args.slice(0, -1) : [];
+  var actionCreators = [];
+  var keysToWatch = [];
+  strings.forEach(function (str) {
+    if (str.slice(0, 6) === 'select') {
+      keysToWatch.push(str);
+      return;
+    }
+
+    if (str.slice(0, 2) === 'do') {
+      actionCreators.push(str);
+      return;
+    }
+
+    throw Error(("CanNotConnect " + str));
+  });
+
+  var Connect = /*@__PURE__*/(function (Component) {
+    function Connect(props, context) {
+      var this$1 = this;
+
+      Component.call(this, props, context);
+      var store = context.store;
+      this.state = store.select(keysToWatch);
+      this.unsubscribe = store.subscribeToSelectors(keysToWatch, this.setState.bind(this));
+      this.actionCreators = {};
+      actionCreators.forEach(function (name) {
+        this$1.actionCreators[name] = function () {
+          var args = [], len = arguments.length;
+          while ( len-- ) args[ len ] = arguments[ len ];
+
+          if (store.action) {
+            return store.action(name, args);
+          }
+
+          return store[name].apply(store, args);
+        };
+      });
+    }
+
+    if ( Component ) Connect.__proto__ = Component;
+    Connect.prototype = Object.create( Component && Component.prototype );
+    Connect.prototype.constructor = Connect;
+
+    Connect.prototype.componentWillUnmount = function componentWillUnmount () {
+      this.unsubscribe();
+    };
+
+    Connect.prototype.render = function render () {
+      return react.createElement(Comp, Object.assign({}, this.props, this.state, this.actionCreators));
+    };
+
+    return Connect;
+  }(react.Component));
+
+  Connect.contextTypes = CONTEXT_TYPES;
+  Connect.displayName = react.Component.displayName || react.Component.name;
+  return Connect;
+};
+
+exports.Provider = Provider;
+exports.connect = connect;
 //# sourceMappingURL=index.js.map
