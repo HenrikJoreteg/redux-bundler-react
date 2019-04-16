@@ -65,6 +65,6 @@ export const connect = (...args) => {
     }
   }
   Connect.contextTypes = CONTEXT_TYPES
-  Connect.displayName = Comp.displayName || Comp.name
+  Connect.displayName = 'connect(' + (Comp.displayName || Comp.name) + ')'
   return Connect
 }

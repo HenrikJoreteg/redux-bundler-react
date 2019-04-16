@@ -49,10 +49,10 @@ test('react component displayName', t => {
   const ConnDisplayName = connect(class Class { static get displayName() { return 'DispName' } })
   const ConnAnon = connect(() => {})
 
-  t.equal(Connected.displayName, 'Page', 'should be Page')
-  t.equal(ConnClass.displayName, 'MyClass', 'should be MyClass')
-  t.equal(ConnDisplayName.displayName, 'DispName', 'should be DispName')
-  t.equal(ConnAnon.displayName, '', 'should be empty')
+  t.equal(Connected.displayName, 'connect(Page)', 'should be connect(Page)')
+  t.equal(ConnClass.displayName, 'connect(MyClass)', 'should be connect(MyClass)')
+  t.equal(ConnDisplayName.displayName, 'connect(DispName)', 'should be connect(DispName)')
+  t.equal(ConnAnon.displayName, 'connect()', 'should be connect()')
 
   t.end()
 })
