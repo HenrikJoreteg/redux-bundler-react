@@ -43,3 +43,16 @@ test('react bindings', t => {
 
   t.end()
 })
+
+test('react component displayName', t => {
+  const ConnClass = connect(class MyClass {})
+  const ConnDisplayName = connect(class Class { static get displayName() { return 'DispName' } })
+  const ConnAnon = connect(() => {})
+
+  t.equal(Connected.displayName, 'Page', 'should be Page')
+  t.equal(ConnClass.displayName, 'MyClass', 'should be MyClass')
+  t.equal(ConnDisplayName.displayName, 'DispName', 'should be DispName')
+  t.equal(ConnAnon.displayName, '', 'should be empty')
+
+  t.end()
+})
