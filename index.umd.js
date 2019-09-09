@@ -89,7 +89,7 @@
     }(react.Component));
 
     Connect.contextTypes = CONTEXT_TYPES;
-    Connect.displayName = react.Component.displayName || react.Component.name;
+    Connect.displayName = 'connect(' + (Comp.displayName || Comp.name) + ')';
     return Connect;
   };
 

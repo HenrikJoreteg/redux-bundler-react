@@ -86,7 +86,7 @@ var connect = function () {
   }(Component));
 
   Connect.contextTypes = CONTEXT_TYPES;
-  Connect.displayName = Component.displayName || Component.name;
+  Connect.displayName = 'connect(' + (Comp.displayName || Comp.name) + ')';
   return Connect;
 };
 
