@@ -4,7 +4,7 @@
   "version": "1.2.0",
   "author": "Henrik Joreteg <henrik@joreteg.com> (joreteg.com)",
   "devDependencies": {
-    "microbundle": "^0.11.0",
+    "microbundle": "^0.15.1",
     "react": "16.5.2",
     "react-dom": "16.5.2",
     "redux-bundler": "22.2.0",
